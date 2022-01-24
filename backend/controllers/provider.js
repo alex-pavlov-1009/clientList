@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Provider = require('../models/provider');
 const clientService = require('../service/client');
 const { validationResult } = require('express-validator');

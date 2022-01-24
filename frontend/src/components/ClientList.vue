@@ -57,7 +57,7 @@ export default {
           submitBtnText: 'Save Client',
           clientMethod: (data) => this.editClient(data),
           refetchClients: this.refetchClients,
-          errors: () => this.$data.errors,
+          errors: () => this.errors,
         },
         { height: 'auto', name: 'ClientModal', width: 700 },
         {
@@ -75,7 +75,7 @@ export default {
           submitBtnText: 'Add Client',
           eventName: 'create-client',
           clientMethod: (data) => this.createClient(data),
-          errors: () => this.$data.errors,
+          errors: () => this.errors,
         },
         { height: 'auto', name: 'ClientModal', width: 700 },
         {
