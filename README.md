@@ -3,8 +3,8 @@ Web application to manage clients and linked providers. Develop using the MEVN s
 
 ## Required environment
 ```
-1) nodejs - to install visit https://nodejs.org/en/download/
-2) mongodb - to install visit https://docs.mongodb.com/manual/installation/
+1) nodejs v17.0.1 - to install visit https://nodejs.org/en/download/
+2) mongodb v5.0.3 - to install visit https://docs.mongodb.com/manual/installation/
 ```
 
 
