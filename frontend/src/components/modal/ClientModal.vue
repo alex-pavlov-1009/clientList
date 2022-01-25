@@ -159,12 +159,20 @@ export default {
         .catch((e) => console.error(e));
     },
     editProvider(provider) {
-      provider.name = prompt(`Change the name of provider`, provider.name);
-      if (provider.name.length === 0) {
+      const newProviderName = prompt(
+        `Change the name of provider`,
+        provider.name
+      );
+      if (newProviderName.length === 0) {
+        this.$notify({
+          group: 'error',
+          title: 'Provider not updated',
+          text: `Provider - name is empty`,
+        });
         return;
       }
       this.isLoadingActive = true;
-      ProviderApi.update(provider)
+      ProviderApi.update({ _id: provider._id, name: newProviderName })
         .then(({ data }) => {
           this.$notify({
             title: 'Provider updated',

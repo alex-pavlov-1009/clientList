@@ -5,7 +5,7 @@ module.exports = {
     operationId: 'deleteClient',
     parameters: [
       {
-        name: 'id',
+        name: 'clientId',
         in: 'path',
         schema: {
           type: 'string',
@@ -20,7 +20,25 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/Client',
+              type: 'object',
+              properties: {
+                client: {
+                  $ref: '#/components/schemas/Client',
+                },
+              },
+            },
+          },
+        },
+      },
+      400: {
+        description: 'Request validation failed',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/components/schemas/ValidationError',
+              },
             },
           },
         },

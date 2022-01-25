@@ -7,12 +7,16 @@ router.get('/list', providerController.getProviders);
 
 router.put(
   '/:providerId',
-  providerValidate.rules,
+  [providerValidate.paramRules, providerValidate.rules],
   providerController.updateProvider
 );
 
 router.post('/create', providerValidate.rules, providerController.addProvider);
 
-router.delete('/:providerId', providerController.deleteProvider);
+router.delete(
+  '/:providerId',
+  providerValidate.paramRules,
+  providerController.deleteProvider
+);
 
 module.exports = router;

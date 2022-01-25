@@ -24,17 +24,25 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/Provider',
+              type: 'object',
+              properties: {
+                provider: {
+                  $ref: '#/components/schemas/Provider',
+                },
+              },
             },
           },
         },
       },
-      500: {
-        description: 'Server error or validation failed',
+      400: {
+        description: 'Request validation failed',
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/ValidationError',
+              type: 'array',
+              items: {
+                $ref: '#/components/schemas/ValidationError',
+              },
             },
           },
         },

@@ -10,9 +10,14 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              items: {
-                $ref: '#/components/schemas/Provider',
+              type: 'object',
+              properties: {
+                providers: {
+                  type: 'array',
+                  items: {
+                    $ref: '#/components/schemas/Provider',
+                  },
+                },
               },
             },
           },

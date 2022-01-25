@@ -1,3 +1,4 @@
-const requiredErrorText = 'You have to fill this information.';
+const REQUIRED_ERROR_TEXT = 'Required field.';
+const MONGO_ID_IS_NOT_VALID = 'Param _id is not valid';
 
-module.exports = { requiredErrorText };
+module.exports = { REQUIRED_ERROR_TEXT, MONGO_ID_IS_NOT_VALID };

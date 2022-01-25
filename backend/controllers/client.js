@@ -1,11 +1,12 @@
 const Client = require('../models/client.js');
 const Provider = require('../models/provider.js');
 const { validationResult } = require('express-validator');
+const { BAD_REQUEST } = require('../const');
 
 exports.addClient = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(500).json(errors.array());
+    return res.status(BAD_REQUEST).json(errors.array());
   }
   const client = new Client(req.body.data);
   await client.save();
@@ -23,7 +24,7 @@ exports.getClients = async (req, res) => {
 exports.updateClient = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(500).json(errors.array());
+    return res.status(BAD_REQUEST).json(errors.array());
   }
   const client = await Client.findByIdAndUpdate(
     req.params.clientId,
@@ -34,6 +35,10 @@ exports.updateClient = async (req, res) => {
 };
 
 exports.deleteClient = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(BAD_REQUEST).json(errors.array());
+  }
   const client = await Client.findByIdAndDelete(req.params.clientId);
   return res.json({ client });
 };

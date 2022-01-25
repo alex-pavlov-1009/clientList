@@ -42,7 +42,7 @@ export default {
       return `tel:+${this.client.phone}`;
     },
     clientEmailLink() {
-      return `mailto:+${this.client.phone}`;
+      return `mailto:${this.client.email}`;
     },
   },
 };

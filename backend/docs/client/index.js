@@ -7,7 +7,7 @@ module.exports = {
   '/clients/list': {
     ...getClients,
   },
-  '/clients/{id}': {
+  '/clients/{clientId}': {
     ...updateClient,
     ...deleteClient,
   },

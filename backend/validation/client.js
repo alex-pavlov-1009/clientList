@@ -1,6 +1,9 @@
-const { requiredErrorText } = require('./errorMessages');
+const {
+  REQUIRED_ERROR_TEXT,
+  MONGO_ID_IS_NOT_VALID,
+} = require('./errorMessages');
 const ObjectId = require('mongodb').ObjectId;
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 const Client = require('../models/client.js');
 
 const phoneCheck = (value) => {
@@ -27,13 +30,13 @@ const clientFieldUniqueCheck = async (value, fieldName, erroeMsg, req) => {
 };
 
 exports.rules = [
-  body('data.name').not().isEmpty().withMessage(requiredErrorText),
-  body('data.email').not().isEmpty().withMessage(requiredErrorText),
+  body('data.name').not().isEmpty().withMessage(REQUIRED_ERROR_TEXT),
+  body('data.email').not().isEmpty().withMessage(REQUIRED_ERROR_TEXT),
   body('data.email').isEmail().withMessage('Email is not valid.'),
   body('data.email').custom((value, { req }) =>
     clientFieldUniqueCheck(value, 'email', 'Email is not unique.', req)
   ),
-  body('data.phone').not().isEmpty().withMessage(requiredErrorText),
+  body('data.phone').not().isEmpty().withMessage(REQUIRED_ERROR_TEXT),
   body('data.phone').custom(phoneCheck),
   body('data.phone').custom((value, { req }) =>
     clientFieldUniqueCheck(value, 'phone', 'Phone is not unique.', req)
@@ -42,4 +45,8 @@ exports.rules = [
     .optional()
     .isArray()
     .withMessage('Providers are not valid.'),
+];
+
+exports.paramRules = [
+  param('clientId').optional().isMongoId().withMessage(MONGO_ID_IS_NOT_VALID),
 ];

@@ -6,7 +6,7 @@ module.exports = {
     operationId: 'deleteProvider',
     parameters: [
       {
-        name: 'id',
+        name: 'providerId',
         in: 'path',
         schema: {
           type: 'string',
@@ -21,7 +21,25 @@ module.exports = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/Provider',
+              type: 'object',
+              properties: {
+                provider: {
+                  $ref: '#/components/schemas/Provider',
+                },
+              },
+            },
+          },
+        },
+      },
+      400: {
+        description: 'Request validation failed',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/components/schemas/ValidationError',
+              },
             },
           },
         },

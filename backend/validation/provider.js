@@ -1,5 +1,8 @@
-const { requiredErrorText } = require('./errorMessages');
-const { body } = require('express-validator');
+const {
+  REQUIRED_ERROR_TEXT,
+  MONGO_ID_IS_NOT_VALID,
+} = require('./errorMessages');
+const { body, param } = require('express-validator');
 const ObjectId = require('mongodb').ObjectId;
 const Provider = require('../models/provider.js');
 
@@ -19,8 +22,12 @@ const providerNameUniqueCheck = async (value, req) => {
 };
 
 exports.rules = [
-  body('data.name').not().isEmpty().withMessage(requiredErrorText),
+  body('data.name').not().isEmpty().withMessage(REQUIRED_ERROR_TEXT),
   body('data.name').custom((value, { req }) =>
     providerNameUniqueCheck(value, req)
   ),
+];
+
+exports.paramRules = [
+  param('providerId').isMongoId().withMessage(MONGO_ID_IS_NOT_VALID),
 ];

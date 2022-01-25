@@ -7,7 +7,7 @@ module.exports = {
   '/providers/list': {
     ...getProviders,
   },
-  '/providers/{id}': {
+  '/providers/{providerId}': {
     ...updateProvider,
     ...deleteProvider,
   },
