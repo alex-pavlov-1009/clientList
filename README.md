@@ -50,3 +50,9 @@ npm start
 or
 yarn start
 ```
+
+### Swagger path
+```
+To see swagger documentation go to /api-docs/ from backend base url
+For exapmle: http://localhost:8000/api-docs/
+```
